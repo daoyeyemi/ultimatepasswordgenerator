@@ -16,7 +16,7 @@ const randomFunction = {
 // added functionality so that when clipboard is clicked
 clipboard.addEventListener("click", () => {
     // creating new div for textspace
-    const textspace = document.createElement("textspace");
+    const textarea = document.createElement("textarea");
     // password will be equal to the inner text of the resultElement
     const password = resultElement.innerText;
     // if password doesn't exist, return nothing
@@ -24,14 +24,14 @@ clipboard.addEventListener("click", () => {
         return
     }
     // value of the textspace is equal to the password
-    textspace.value = password;
+    textarea.value = password;
     // add textspace div to the body of the document
-    document.body.appendChild(textspace);
+    document.body.appendChild(textarea);
     // select and copy value in textspace 
-    textspace.select();
+    textarea.select();
     document.execCommand("copy");
     // remove value in the textspace 
-    textspace.remove();
+    textarea.remove();
     // alert the following message
     alert("Password copied to clipboard")
 })
@@ -69,13 +69,13 @@ function generatePassword (lower, upper, number, symbol, length) {
         typesArr.forEach(type => {
             const funcName = Object.keys(type)[0];
             console.log(funcName);
-            // generatedPassword += randomFunction[funcName]();
+            generatedPassword += randomFunction[funcName]();
             // console.log(generatedPassword);
         })
     }
-    // const finPassword = generatedPassword.slice(0, length)
+    const finPassword = generatedPassword.slice(0, length)
 
-    // return finPassword
+    return finPassword
 }
 
 function getRandomLower() {
