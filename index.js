@@ -38,5 +38,55 @@ clipboard.addEventListener("click", () => {
 
 // added functionality so that when clipboard is clicked
 generateElement.addEventListener("click", () => {
-    const length = lengthElement.value;
+    // + plus sign makes lengthElement value an actual number
+    const length = +lengthElement.value;
+    const hasLower = lowercaseElement.checked;
+    const hasUpper = uppercaseElement.checked;
+	const hasNumber = numbersElement.checked;
+	const hasSymbol = symbolsElement.checked;
+    
+    resultElement.innerText = generatePassword(hasLower, hasUpper, hasNumber, hasSymbol, length)
 })
+
+function generatePassword (lower, upper, number, symbol, length) {
+    let generatedPassword = "";
+    
+    const typesCount = lower + upper + number + symbol;
+    // filter out unchecked types
+    console.log(typesCount)
+    // creates new array that filters out unchecked items
+    const typesArr = [
+        {lower}, {upper}, {number}, {symbol}
+    ]
+         .filter(item => Object.values(item)[0]);
+    console.log(typesArr)
+    // doesn't have a selected type
+    if (typesCount === 0) {
+        return ""
+    }
+
+    for (let i = 0; i < length; i += typesCount) {
+        typesArr.forEach(type => {
+            const funcName = Object.keys(type)[0];
+            console.log(funcName)
+            generatedPassword += randomFunction[funcName]()
+        })
+    }
+}
+
+function getRandomLower() {
+	return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+}
+
+function getRandomUpper() {
+	return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+}
+
+function getRandomNumber() {
+	return +String.fromCharCode(Math.floor(Math.random() * 10) + 48);
+}
+
+function getRandomSymbol() {
+	const symbols = '!@#$%^&*(){}[]=<>/,.'
+	return symbols[Math.floor(Math.random() * symbols.length)];
+}
