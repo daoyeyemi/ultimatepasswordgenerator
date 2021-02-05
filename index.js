@@ -56,7 +56,7 @@ function generatePassword (lower, upper, number, symbol, length) {
     console.log(typesCount)
     // creates new array that filters out unchecked items
     const typesArr = [
-        {lower}, {upper}, {number}, {symbol}
+        { lower }, { upper }, { number }, { symbol }
     ]
          .filter(item => Object.values(item)[0]);
     console.log(typesArr)

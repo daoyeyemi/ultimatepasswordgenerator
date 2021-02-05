@@ -1,0 +1,21 @@
+body {
+    background-color: black;
+}
+
+h1 {
+    color:white
+}
+
+label {
+    color: white;
+}
+
+span {
+    color: white;
+}
+
+.criterion {
+    border: 2px solid white;
+    border-radius: 5px;
+    padding: 20px;
+}
