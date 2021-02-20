@@ -56,10 +56,14 @@ function generatePassword (lower, upper, number, symbol, length) {
     console.log(typesCount)
     // creates new array that filters out unchecked items
     const typesArr = [
-        { lower }, { upper }, { number }, { symbol }
+        { lower }, 
+        { upper }, 
+        { number }, 
+        { symbol }
     ]
          .filter(item => Object.values(item)[0]);
     console.log(typesArr)
+    
     // doesn't have a selected type
     if (typesCount === 0) {
         return ""
@@ -69,11 +73,12 @@ function generatePassword (lower, upper, number, symbol, length) {
         typesArr.forEach(type => {
             const funcName = Object.keys(type)[0];
             console.log(funcName);
+            console.log(i)
             generatedPassword += randomFunction[funcName]();
-            // console.log(generatedPassword);
+            console.log(generatedPassword);
         })
     }
-    const finPassword = generatedPassword.slice(0, length)
+    const finPassword = generatedPassword
 
     return finPassword
 }
